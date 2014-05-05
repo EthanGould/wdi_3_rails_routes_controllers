@@ -91,3 +91,22 @@ binding.pry
 
 # LAB. List all the Songs resources.
 
+# Go thru and create a show action for Products
+
+# LAB. Get a Song.
+
+# Create a root route with a Dashboard or Home controller.
+
+# Look at the log file.
+
+# Use the log.debug method
+
+# Create a partial
+
+# Use a view helper
+
+# Dive into HTTP Request/Response with Chrome inspector.
+
+# Create a method of application controller and use it in the Products 
+# controller.
+
