@@ -1,0 +1,7 @@
+<%= "Hello from the index.html.erb view. I got here via the controller: #{params[:controller]}, action: #{params[:action]}" %>
+<ul>
+
+<% @products.each do |product| %>
+  <li> Product is: <%=product.name%>, price: <%=product.price%></li> 
+<% end %>
+</ul>

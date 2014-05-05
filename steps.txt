@@ -1,0 +1,93 @@
+* Create a Products Controller with an index action
+
+touch app/controller/products_controller.rb
+
+class ProductsController < ApplicationController
+
+  def index
+    # render is a method that takes lots of different arguments
+    # it's very powerful. Good to know later.
+
+    # the {text: "somestring"} argument just returns "somestring" to the browser
+    render text: "Hello from the controller: products, action: show"
+  end
+end
+
+# Got an error: No route matches [GET] "/products"
+# Need to add a route for this Controller action.
+# Add this to the routes.rb file
+  # Maps the URL to a controller#action
+  get '/products' => 'products#index'
+
+  # get - HTTP GET method
+  # '/products'  - URL of the path within this application
+  # 'products#index' - The controller#action, aka controller#method
+  
+
+# Lets draw what is going on here? 
+
+# All actions have a parameter that is a Hash object. It's named 
+# params.
+# Lets take a look at that parameter and send it as the body of response.
+# Do you know what a HTTP Response is? What it looks like?
+# Hmm, lets use a Chrome Inspector.
+
+  def index
+    render text: "Hello from the controller: #{params[:controller]}, action: #{params[:action]}"
+  end
+
+  # lets comment out the render action
+
+  # Ooops, missing template. How to fix?
+
+  # Add a index.html.erb to the app/views/products directory.
+  mkdir app/views/products
+  touch app/views/products/index.html.erb
+
+  # In the index.html.erb file
+  "Hello from the index.html.erb view. I got here via the controller: product, action: index"
+
+  # Now lets see if we can use the params hash here?
+  <%= "Hello from the index.html.erb view. I got here via the controller: #{params[:controller]}, action: #{params[:action]}" %>
+
+  # How does all of this interact with the 'layout' file?
+  # where is the layout file.
+  app/views/layout/application.html.erb
+
+# on top of the yield add.
+<h3>Insert the view below</h3>
+# below the yield
+<h3>Insert the view below</h3>
+
+
+# So the 'layout' is where you add "view" code that you want to use on 
+# on every page of your app.
+# Add this your layout
+<h3>Honest Tom's Products</h3>
+
+# Maybe some other stuff, like javascript, css, etc that will be used 
+# over the entire site would be added to the layout file.
+
+# OK, lets list ALL of our products in the index view.
+# Add this to our index view
+<ul>
+  <li> Product is: Brown Shoe, price: 13.99 </li>
+  <li> Product is: Red Ferrari, price: 60_786.99 </li>
+</ul>
+
+# Lets get real products from the DB. Maybe add in binding.pry ?
+binding.pry
+@products = Product.all  
+# This will get an Array of ALL the products. We then set the instance 
+# variable @products to this array of all the products. Nice.
+
+# Now we want to use this instance variable in the index view.
+<ul>
+
+<% @products.each do |product| %>
+  <li> Product is: <%=product.name%>, price: <%=product.price%></li> 
+<% end %>
+</ul>
+
+# LAB. List all the Songs resources.
+

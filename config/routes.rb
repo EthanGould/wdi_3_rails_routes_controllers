@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  # Maps the URL to a controller#action
+  get '/products' => 'products#index'
+
+  # get - HTTP GET method
+  # '/products'  - URL of the path within this application
+  # 'products#index' - The controller#action, aka controller#method
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
